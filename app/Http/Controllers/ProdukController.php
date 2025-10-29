@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Models\Produk;
 
 class ProdukController extends Controller
 {
@@ -12,12 +13,16 @@ class ProdukController extends Controller
      */
     public function index(): view
     {
-        $nama = 'Usama Fadlilah';
-        $prodi = 'Sistem Informasi';
-        return view('data', [
-            'nama' => $nama,
-            'nama_prodi' => $prodi
-        ]);
+        // $nama = 'Usama Fadlilah';
+        // $prodi = 'Sistem Informasi';
+        // return view('data', [
+        //     'nama' => $nama,
+        //     'nama_prodi' => $prodi
+        // ]);
+
+        $data = Produk::all();
+        return view('produk', compact('data'));
+    
     }
 
     /**
