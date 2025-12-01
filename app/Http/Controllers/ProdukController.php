@@ -13,13 +13,6 @@ class ProdukController extends Controller
      */
     public function index(): view
     {
-        // $nama = 'Usama Fadlilah';
-        // $prodi = 'Sistem Informasi';
-        // return view('data', [
-        //     'nama' => $nama,
-        //     'nama_prodi' => $prodi
-        // ]);
-
         $data = Produk::all();
         return view('produk', compact('data'));
     
@@ -68,9 +61,9 @@ class ProdukController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id_produk)
     {
-        $produk = Produk::findOrFail();
+        $produk = Produk::findOrFail($id_produk);
 
         return view('produk_edit', compact('produk'));
     }
@@ -78,12 +71,12 @@ class ProdukController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id_produk)
     {
-        $produk = Produk::findOrFail($id);
+        $produk = Produk::findOrFail($id_produk);
 
         $request->validate([
-            'nama_produk'=> 'required|stirng|max:100|unique:produk,nama_produk,' . $produk->id,
+            'nama_produk'=> 'required|string|max:100|unique:produk,nama_produk,' . $produk->id_produk .',id_produk',
             'kategori'=> 'required|string|max:50',
             'harga_satuan'=> 'required|numeric|min:0',
             'stok'=> 'required|integer|min:0',
@@ -97,7 +90,8 @@ class ProdukController extends Controller
             'stok'=>$request->stok,
             'satuan'=>$request->satuan,
         ]);
-        redirect('/produk')->with('success','Produk Berhasil Diupdate!');
+        
+        return redirect('/produk')->with('success','Produk Berhasil Diupdate!');
     }
 
     /**

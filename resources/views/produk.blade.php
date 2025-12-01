@@ -42,6 +42,8 @@
 
                 <th>Kategori</th>
 
+                <th>Action</th>
+
             </tr>
 
         </thead>
@@ -62,6 +64,10 @@
                     <td>{{ $produk->stok }}</td>
 
                     <td>{{ $produk->kategori }}</td>
+
+                    <td>
+                        <a href="{{ route('produk.edit', $produk->id_produk) }}">Edit</a>
+                    </td>
 
                 </tr>
             @endforeach
