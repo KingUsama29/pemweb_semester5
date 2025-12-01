@@ -70,7 +70,9 @@ class ProdukController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $produk = Produk::findOrFail();
+
+        return view('produk_edit', compact('produk'));
     }
 
     /**
@@ -78,7 +80,24 @@ class ProdukController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $produk = Produk::findOrFail($id);
+
+        $request->validate([
+            'nama_produk'=> 'required|stirng|max:100|unique:produk,nama_produk,' . $produk->id,
+            'kategori'=> 'required|string|max:50',
+            'harga_satuan'=> 'required|numeric|min:0',
+            'stok'=> 'required|integer|min:0',
+            'satuan'=> 'required|string|max:20'
+        ]);
+
+        $produk->update([
+            'nama_produk'=>$request->nama_produk,
+            'kategori'=>$request->kategori,
+            'harga_satuan'=>$request->harga_satuan,
+            'stok'=>$request->stok,
+            'satuan'=>$request->satuan,
+        ]);
+        redirect('/produk')->with('success','Produk Berhasil Diupdate!');
     }
 
     /**
