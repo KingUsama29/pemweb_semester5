@@ -16,6 +16,14 @@
 
     <h1>Data Produk</h1>
 
+
+    @if (@session('success'))
+        <p style="color: green;">{{ session('success') }}</p>
+    @endif
+
+    <a href="produk/create">Tambah Produk Baru</a>
+    <br>
+    <b></b>
     <table border="1">
 
         <thead>
@@ -34,30 +42,28 @@
 
                 <th>Kategori</th>
 
-                </tr>
+            </tr>
 
         </thead>
 
         <tbody>
 
-            @foreach($data as $produk )
+            @foreach ($data as $produk)
+                <tr>
 
-            <tr>
+                    <td>{{ $produk->id_produk }}</td>
 
-                <td>{{ $produk->id_produk }}</td>
+                    <td>{{ $produk->nama_produk }}</td>
 
-                <td>{{ $produk->nama_produk }}</td>
+                    <td>{{ $produk->harga_satuan }}</td>
 
-                <td>{{ $produk->Harga_satuan }}</td>
+                    <td>{{ $produk->satuan }}</td>
 
-                <td>{{ $produk->satuan }}</td>
+                    <td>{{ $produk->stok }}</td>
 
-                <td>{{ $produk->stok }}</td>
+                    <td>{{ $produk->kategori }}</td>
 
-                <td>{{ $produk->kategori }}</td>
-
-            </tr> 
-
+                </tr>
             @endforeach
 
         </tbody>

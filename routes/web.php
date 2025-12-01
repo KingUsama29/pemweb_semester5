@@ -3,15 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukController;
 
-Route::get('/home', function () {
-    return view('welcome');
-});
-Route::get('/index', function () {
-    echo 'welcome';
-});
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Route::get('/show/{nama}', function ($nama) {
     return "hallo,".$nama;
 });
@@ -19,10 +11,21 @@ Route::get('/edit/{nama}', function ($nama) {
     return "hallo,".$nama;
 })->where('nama','[A-Za-z]+');
 
-Route::get('/home', function () {
-    return view('welcome');
-});
+#
 
 Route::get('/produk', [ProdukController::class,'index']);
+Route::get('/produk/create', [ProdukController::class,'create']);
+Route::post('/produk', [ProdukController::class,'store']);
+
+Route::delete('/produk', [ProdukController::class,'destroy']);
+Route::get('/home', function(): void{
+    echo "welcome";
+});
+Route::get('/index', function(): void{
+    echo "welcome";
+});
 
 
+Route::get('/', function ():view {
+    return view('welcome');
+});
