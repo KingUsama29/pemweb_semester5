@@ -20,7 +20,7 @@ Route::post('/produk', [ProdukController::class,'store']);
 
 Route::get('/produk/{id_produk}/edit',[ProdukController::class,'edit'])->name('produk.edit');
 Route::put('/produk/{id_produk}',[ProdukController::class,'update'])->name('produk.update');
-
+Route::delete('/produk/{id_produk}',[ProdukController::class, 'destroy'])->name('produk.destroy');
 
 
 Route::delete('/produk', [ProdukController::class,'destroy']);

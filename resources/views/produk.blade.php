@@ -67,6 +67,13 @@
 
                     <td>
                         <a href="{{ route('produk.edit', $produk->id_produk) }}">Edit</a>
+
+                        <form action="{{ route('produk.destroy', $produk->id_produk) }}" method="POST"
+                            onsubmit="return confirm('Yakin mau hapus?')" style="display: inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Hapus</button>
+                        </form>
                     </td>
 
                 </tr>
